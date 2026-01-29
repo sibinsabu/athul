@@ -1,5 +1,9 @@
-# TODO: Add 3D Patterns to Admin Login Background
+# TODO: Add Preview Button for Uploaded File in Add New Work
 
-- [ ] Add `.three-d-background` CSS class to `app/globals.css` with 3D grid pattern using pseudo-element, gradients, and transforms
-- [ ] Apply `three-d-background` class to the login section in `app/(routes)/admin/page.tsx`
-- [ ] Run development server to verify the 3D patterns appear correctly in the background
+## Tasks
+- [x] Add state for showNewWorkPreview modal
+- [x] Modify file selection onChange to generate data URL for preview
+- [x] Add preview button next to file selection display
+- [x] Implement new preview modal for new work (image/video display)
+- [x] Test preview functionality for images and videos
+- [x] Add cancel button with functionality next to Add Work button

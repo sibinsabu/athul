@@ -46,7 +46,21 @@ export default function Home() {
       return;
     }
 
-    // Here you can add logic to send the message, e.g., API call
+    // Store message in localStorage
+    const messageData = {
+      id: Date.now(),
+      firstName,
+      lastName,
+      email,
+      sessionType,
+      message,
+      timestamp: new Date().toISOString()
+    };
+
+    const existingMessages = JSON.parse(localStorage.getItem('contactMessages') || '[]');
+    existingMessages.push(messageData);
+    localStorage.setItem('contactMessages', JSON.stringify(existingMessages));
+
     alert('Message sent successfully!');
   };
 
@@ -133,9 +147,18 @@ export default function Home() {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-charcoal/80 backdrop-blur-md border-b border-white/5">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 py-6">
           <div className="flex items-center justify-between">
-            <div className="text-2xl font-display font-bold tracking-wide">
-              <span className="text-gold-accent">LENS</span>
-              <span className="text-white"> OF AJ</span>
+            <div className="flex items-center space-x-4">
+              <Image
+                src="/images/pfp.jpeg"
+                alt="Profile"
+                width={40}
+                height={40}
+                className="rounded-full"
+              />
+              <div className="text-2xl font-display font-bold tracking-wide">
+                <span className="text-gold-accent">LENS</span>
+                <span className="text-white"> OF AJ</span>
+              </div>
             </div>
             
             <div className="hidden md:flex items-center space-x-12">
@@ -168,13 +191,18 @@ export default function Home() {
       {/* Hero Section */}
       <section id="home" className="relative min-h-[140vh] flex items-center justify-center overflow-hidden grain-overlay">
         <div className="absolute inset-0">
-          <Image
-            src={heroImages[currentHeroIndex]}
-            alt="Professional camera setup"
-            fill
-            className="object-cover object-center opacity-60"
-            priority
-          />
+          {heroImages.map((img, index) => (
+            <Image
+              key={index}
+              src={img}
+              alt="Professional camera setup"
+              fill
+              className={`object-cover object-center transition-opacity duration-1000 ease-in-out ${
+                index === currentHeroIndex ? 'opacity-60' : 'opacity-0'
+              }`}
+              priority={index === 0}
+            />
+          ))}
           <div className="absolute inset-0 hero-gradient"></div>
         </div>
 
@@ -305,6 +333,9 @@ export default function Home() {
               <div className="space-y-4 mb-10">
                 <div className="flex items-center space-x-4">
                   <div className="w-1 h-12 bg-gold-accent"></div>
+                  <svg className="w-6 h-6 text-gold-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
                   <div>
                     <p className="text-sm text-gray-400 font-body">Client</p>
                     <p className="text-lg font-body">Manjima Jayakrishnan</p>
@@ -312,6 +343,10 @@ export default function Home() {
                 </div>
                 <div className="flex items-center space-x-4">
                   <div className="w-1 h-12 bg-gold-accent"></div>
+                  <svg className="w-6 h-6 text-gold-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
                   <div>
                     <p className="text-sm text-gray-400 font-body">Location</p>
                     <p className="text-lg font-body">Bangalore, India</p>
@@ -319,6 +354,9 @@ export default function Home() {
                 </div>
                 <div className="flex items-center space-x-4">
                   <div className="w-1 h-12 bg-gold-accent"></div>
+                  <svg className="w-6 h-6 text-gold-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+                  </svg>
                   <div>
                     <p className="text-sm text-gray-400 font-body">Category</p>
                     <p className="text-lg font-body">Traditional Photoshoot</p>

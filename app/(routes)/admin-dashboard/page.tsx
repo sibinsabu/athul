@@ -16,6 +16,7 @@ interface Message {
 }
 
 interface AboutText {
+  name: string;
   title: string;
   intro: string;
   description: string;
@@ -39,6 +40,7 @@ export default function AdminDashboard() {
   const [showDeletePopup, setShowDeletePopup] = useState(false);
   const [messageToDelete, setMessageToDelete] = useState<Message | null>(null);
   const [aboutText, setAboutText] = useState<AboutText>({
+    name: "Athul Jacob",
     title: "Capturing The Art of Life",
     intro: "Hi, I'm Athul Jacob, a passionate photographer and videographer dedicated to preserving your most precious moments. With a keen eye for detail and an artistic approach, I transform ordinary scenes into extraordinary visual stories.",
     description: "Through years of experience in photography and videography, I've developed a unique style that blends technical excellence with creative storytelling. Every project is approached with passion and precision, ensuring your memories are captured beautifully.",
@@ -202,7 +204,7 @@ export default function AdminDashboard() {
 
       {/* Delete Confirmation Popup */}
       {showDeletePopup && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-[100]">
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-100">
           <div className="bg-charcoal border-2 border-gold-accent/50 rounded-xl p-8 max-w-md w-full mx-4 shadow-2xl shadow-gold-accent/20 animate-in fade-in-0 zoom-in-95 duration-300">
             <div className="text-center mb-6">
               <div className="w-16 h-16 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -235,7 +237,7 @@ export default function AdminDashboard() {
 
       {/* Work Preview Popup */}
       {showPreview && previewWork && (
-        <div className="fixed inset-0 bg-black/90 backdrop-blur-md flex items-center justify-center z-[100]">
+        <div className="fixed inset-0 bg-black/90 backdrop-blur-md flex items-center justify-center z-100">
           <div className="bg-charcoal border-2 border-gold-accent/50 rounded-xl p-8 max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto shadow-2xl shadow-gold-accent/20 animate-in fade-in-0 zoom-in-95 duration-300">
             <div className="flex justify-between items-start mb-6">
               <div className="flex items-center space-x-4">
@@ -261,7 +263,7 @@ export default function AdminDashboard() {
                 </svg>
               </button>
             </div>
-            <div className="relative h-96 md:h-[500px] rounded-lg overflow-hidden border border-white/10">
+            <div className="relative h-96 md:h-125 rounded-lg overflow-hidden border border-white/10">
               {previewWork.type === 'video' ? (
                 <video
                   src={previewWork.file}
@@ -283,7 +285,7 @@ export default function AdminDashboard() {
 
       {/* Work Delete Confirmation Popup */}
       {showWorkDeletePopup && workToDelete && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-[100]">
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-100">
           <div className="bg-charcoal border-2 border-gold-accent/50 rounded-xl p-8 max-w-md w-full mx-4 shadow-2xl shadow-gold-accent/20 animate-in fade-in-0 zoom-in-95 duration-300">
             <div className="text-center mb-6">
               <div className="w-16 h-16 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -316,7 +318,7 @@ export default function AdminDashboard() {
 
       {/* New Work Preview Popup */}
       {showNewWorkPreview && newWorkPreview && newWorkForm.file && (
-        <div className="fixed inset-0 bg-black/90 backdrop-blur-md flex items-center justify-center z-[100]">
+        <div className="fixed inset-0 bg-black/90 backdrop-blur-md flex items-center justify-center z-100">
           <div className="bg-charcoal border-2 border-gold-accent/50 rounded-xl p-8 max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto shadow-2xl shadow-gold-accent/20 animate-in fade-in-0 zoom-in-95 duration-300">
             <div className="flex justify-between items-start mb-6">
               <div className="flex items-center space-x-4">
@@ -339,7 +341,7 @@ export default function AdminDashboard() {
                 </svg>
               </button>
             </div>
-            <div className="relative h-96 md:h-[500px] rounded-lg overflow-hidden border border-white/10">
+            <div className="relative h-96 md:h-125 rounded-lg overflow-hidden border border-white/10">
               {newWorkForm.file.type.startsWith('video/') ? (
                 <video
                   src={newWorkPreview}
@@ -475,6 +477,17 @@ export default function AdminDashboard() {
 
           <div className="bg-charcoal/50 border border-white/5 rounded-lg p-8">
             <div className="space-y-6">
+              <div>
+                <label className="block text-sm font-body text-gray-400 mb-2">Photographer Name</label>
+                <input
+                  type="text"
+                  value={aboutText.name}
+                  onChange={(e) => setAboutText(prev => ({ ...prev, name: e.target.value }))}
+                  className="w-full px-6 py-4 bg-charcoal/30 backdrop-blur-sm border border-white/20 rounded-lg text-white font-body focus:border-gold-accent focus:outline-none transition-colors"
+                  placeholder="Enter photographer name"
+                />
+              </div>
+
               <div>
                 <label className="block text-sm font-body text-gray-400 mb-2">Title</label>
                 <input

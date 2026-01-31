@@ -1,9 +1,6 @@
-# TODO: Add Preview Button for Uploaded File in Add New Work
+# TODO: Update Social Media Links and Email in Footer
 
-## Tasks
-- [x] Add state for showNewWorkPreview modal
-- [x] Modify file selection onChange to generate data URL for preview
-- [x] Add preview button next to file selection display
-- [x] Implement new preview modal for new work (image/video display)
-- [x] Test preview functionality for images and videos
-- [x] Add cancel button with functionality next to Add Work button
+- [x] Update Instagram link in app/(routes)/profile/page.tsx footer from "#" to "https://www.instagram.com/p/DGh4pvQRBFU/?igsh=cmR3OHJhaTJ2Njh3"
+- [x] Update LinkedIn link in app/(routes)/profile/page.tsx footer from "#" to "https://www.linkedin.com/in/athul-jacob-8a4529267"
+- [x] Update email in app/(routes)/profile/page.tsx footer from "hello@lensofaj.com" to "athuljacob007@gmail.com"
+- [x] Update email in contact info section from "hello@lensofaj.com" to "athuljacob007@gmail.com"

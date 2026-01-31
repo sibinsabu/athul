@@ -8,6 +8,7 @@ export default function Home() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
   const [aboutText, setAboutText] = useState({
+    name: "Athul Jacob",
     title: "Capturing The Art of Life",
     intro: "Hi, I'm Athul Jacob, a passionate photographer and videographer dedicated to preserving your most precious moments. With a keen eye for detail and an artistic approach, I transform ordinary scenes into extraordinary visual stories.",
     description: "Through years of experience in photography and videography, I've developed a unique style that blends technical excellence with creative storytelling. Every project is approached with passion and precision, ensuring your memories are captured beautifully.",
@@ -153,22 +154,25 @@ export default function Home() {
 
   const testimonials = [
     {
-      name: 'Sarah Mitchell',
-      role: 'Bride',
-      image: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?q=80&w=387&auto=format&fit=crop',
-      text: 'The attention to detail and artistic vision transformed our wedding photos into timeless treasures. Absolutely stunning work.'
+      name: 'Sibin Sabu',
+      role: 'Client',
+      image: '/images/sibin.jpeg',
+      rating: 5,
+      text: 'I was blown away by how Athul captured my personality in those portraits. It felt so natural and real, like he really understood me. The photos turned out way better than I expected.'
     },
     {
-      name: 'James Chen',
-      role: 'Creative Director',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=387&auto=format&fit=crop',
-      text: 'Professional, creative, and incredibly talented. The portfolio shots elevated our brand to a whole new level.'
+      name: 'Mebin S',
+      role: 'Client',
+      image: '/images/mebin.jpeg',
+      rating: 4,
+      text: 'Really enjoyed working with Athul on our brand photos. He has a great eye for composition and made our team look professional yet approachable. Would definitely recommend for business shoots.'
     },
     {
-      name: 'Emma Rodriguez',
-      role: 'Fashion Model',
-      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=387&auto=format&fit=crop',
-      text: 'Working with such a passionate photographer made every session feel like art in motion. Truly exceptional.'
+      name: 'Richa Rose',
+      role: 'Client',
+      image: '/images/richa.jpeg',
+      rating: 5,
+      text: 'Athul is incredibly passionate about his work, and it shows in every shot. The concept shoot we did was so much fun, and the results were amazing. Felt like we were creating art together.'
     }
   ];
 
@@ -219,7 +223,7 @@ export default function Home() {
               </Link>
             </div>
             
-            <button className="md:hidden text-white bg-black/20 backdrop-blur-md border border-white/10 rounded-lg p-2 hover:bg-black/30 transition-all duration-300">
+            <button suppressHydrationWarning={true} className="md:hidden text-white bg-black/20 backdrop-blur-md border border-white/10 rounded-lg p-2 hover:bg-black/30 transition-all duration-300">
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-16 6h16"/>
               </svg>
@@ -283,7 +287,7 @@ export default function Home() {
             <div className="section-divider w-32"></div>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div id="services" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {services.map((service, index) => (
               <div key={index} className="card-hover img-overlay group cursor-pointer hover:scale-105 hover:-translate-y-2 transition-all duration-300">
                 <div className="relative h-96 rounded-lg overflow-hidden">
@@ -305,11 +309,11 @@ export default function Home() {
                       className="object-cover"
                     />
                   )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/50 to-transparent"></div>
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <h3 className="text-2xl font-display font-bold mb-2">{service.title}</h3>
-                    <p className="text-gray-300 font-body text-lg mb-4">{service.description}</p>
-                    <button className="px-6 py-2 bg-black/20 backdrop-blur-md border border-white/10 text-white font-handwriting text-sm font-semibold rounded-full hover:bg-black/30 transition-all duration-300">
+    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/70 transition-all duration-300"></div>
+                  <div className="absolute inset-0 p-6 opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-center items-center text-center">
+                    <h3 className="text-2xl font-display font-bold mb-2 text-white">{service.title}</h3>
+                    <p className="text-gray-200 font-body text-lg mb-4">{service.description}</p>
+                    <button suppressHydrationWarning={true} className="px-6 py-2 bg-white/20 backdrop-blur-md border border-white/20 text-white font-handwriting text-sm font-semibold rounded-full hover:bg-white/30 transition-all duration-300">
                       View Works →
                     </button>
                   </div>
@@ -324,7 +328,7 @@ export default function Home() {
       <section className="py-24 bg-charcoal grain-overlay">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="img-overlay rounded-lg overflow-hidden h-96 lg:h-[500px] hover:scale-105 transition-all duration-300">
+            <div className="img-overlay rounded-lg overflow-hidden h-96 lg:h-125 hover:scale-105 transition-all duration-300">
               <div className="carousel-container relative w-full h-full">
                 {carouselImages.map((img, index) => (
                   <Image
@@ -338,22 +342,6 @@ export default function Home() {
                   />
                 ))}
               </div>
-              <button
-                onClick={prevImage}
-                className="carousel-prev absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/30 hover:bg-white/50 backdrop-blur-sm rounded-full p-4 text-black border-2 border-white/50 shadow-lg hover:scale-110 transition-all duration-300 z-20"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7"/>
-                </svg>
-              </button>
-              <button
-                onClick={nextImage}
-                className="carousel-next absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/30 hover:bg-white/50 backdrop-blur-sm rounded-full p-4 text-black border-2 border-white/50 shadow-lg hover:scale-110 transition-all duration-300 z-20"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/>
-                </svg>
-              </button>
             </div>
             
             <div>
@@ -404,7 +392,7 @@ export default function Home() {
                 </div>
               </div>
               
-              <button className="px-10 py-4 bg-black/20 backdrop-blur-md border border-white/10 text-white font-body text-lg font-semibold rounded-full hover:bg-black/30 transition-all duration-300">
+              <button suppressHydrationWarning={true} className="px-10 py-4 bg-black/20 backdrop-blur-md border border-white/10 text-white font-body text-lg font-semibold rounded-full hover:bg-black/30 transition-all duration-300">
                 View Full Project
               </button>
             </div>
@@ -416,7 +404,7 @@ export default function Home() {
       <section id="about" className="py-24 bg-charcoal grain-overlay">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="img-overlay rounded-lg overflow-hidden relative h-96 lg:h-[500px]">
+            <div className="img-overlay rounded-lg overflow-hidden relative h-96 lg:h-125">
               <Image
                 src={aboutImage}
                 alt="About Me"
@@ -434,7 +422,7 @@ export default function Home() {
               <div className="section-divider w-32 mb-8"></div>
               
               <p className="text-xl font-body text-gray-300 mb-6 leading-relaxed">
-                {aboutText.intro}
+                {aboutText.intro.replace('Athul Jacob', aboutText.name)}
               </p>
 
               <p className="text-lg font-body text-gray-400 mb-8 leading-relaxed">
@@ -465,9 +453,9 @@ export default function Home() {
                 </div>
               </div>
               
-              <button className="px-10 py-4 bg-gold-accent/20 backdrop-blur-md border border-gold-accent/30 text-gold-accent font-body text-lg font-semibold rounded-full hover:bg-gold-accent/30 transition-all duration-300 transform hover:scale-105">
+              <Link href="#contact" className="px-10 py-4 bg-gold-accent/20 backdrop-blur-md border border-gold-accent/30 text-gold-accent font-body text-lg font-semibold rounded-full hover:bg-gold-accent/30 transition-all duration-300 transform hover:scale-105 inline-block text-center">
                 Book a Session
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -497,6 +485,37 @@ export default function Home() {
                   <div>
                     <p className="text-xl font-display font-bold">{testimonial.name}</p>
                     <p className="text-gray-400 font-body">{testimonial.role}</p>
+                    <div className="flex items-center mt-2">
+                      {[...Array(5)].map((_, starIndex) => {
+                        const starValue = starIndex + 1;
+                        const isFull = testimonial.rating >= starValue;
+                        const isHalf = testimonial.rating >= starValue - 0.5 && testimonial.rating < starValue;
+                        return (
+                          <svg
+                            key={starIndex}
+                            className={`w-5 h-5 ${isFull ? 'text-gold-accent' : isHalf ? 'text-gold-accent' : 'text-gray-600'}`}
+                            fill={isFull ? 'currentColor' : 'none'}
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
+                            />
+                            {isHalf && (
+                              <path
+                                fill="currentColor"
+                                d="M12 2l1.09 3.26h3.52l-2.85 2.07 1.09 3.26L12 8.52l-2.85 2.07 1.09-3.26-2.85-2.07h3.52L12 2z"
+                                clipPath="inset(0 50% 0 0)"
+                              />
+                            )}
+                          </svg>
+                        );
+                      })}
+                      <span className="ml-2 text-sm text-gray-400 font-body">({testimonial.rating})</span>
+                    </div>
                   </div>
                 </div>
                 <p className="text-lg font-body text-gray-300 leading-relaxed italic">
@@ -517,40 +536,49 @@ export default function Home() {
             <div className="section-divider w-32 mx-auto"></div>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {galleryWorks.length === 0 ? (
-              <div className="col-span-full text-center py-12">
-                <p className="text-xl font-body text-gray-400">No works available yet.</p>
-              </div>
-            ) : (
-              galleryWorks.map((work, index) => {
-                const isLarge = [0, 2, 4].includes(index);
-                return (
-                  <div key={work.id} className={`${isLarge ? 'row-span-2' : ''} img-overlay rounded-lg overflow-hidden cursor-pointer relative h-64 ${isLarge ? 'lg:h-[544px]' : ''}`}>
-                    {work.file ? (
-                      work.type === 'video' ? (
-                        <video
-                          src={work.file}
-                          className="w-full h-full object-cover"
-                          muted
-                        />
-                      ) : (
-                        <Image
-                          src={work.file}
-                          alt={work.title}
-                          fill
-                          className="object-cover"
-                        />
-                      )
-                    ) : null}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {galleryWorks.length === 0 ? (
+            <div className="col-span-full text-center py-12">
+              <p className="text-xl font-body text-gray-400">No works available yet.</p>
+            </div>
+          ) : (
+            galleryWorks.map((work, index) => {
+              const isLarge = [0, 2, 4].includes(index);
+              return (
+                <div key={work.id} className={`${isLarge ? 'row-span-2' : ''} img-overlay rounded-lg overflow-hidden cursor-pointer relative h-64 ${isLarge ? 'lg:h-136' : ''} group`}>
+                  {work.file ? (
+                    work.type === 'video' ? (
+                      <video
+                        src={work.file}
+                        className="w-full h-full object-cover"
+                        muted
+                      />
+                    ) : (
+                      <Image
+                        src={work.file}
+                        alt={work.title}
+                        fill
+                        className="object-cover"
+                      />
+                    )
+                  ) : null}
+                  <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                    <h3 className="text-xl font-display font-bold text-white mb-2">{work.title}</h3>
+                    {work.description && (
+                      <p className="text-gray-200 font-body text-sm mb-4 line-clamp-3">{work.description}</p>
+                    )}
+                    <p className="text-xs text-gray-400 font-body">
+                      Uploaded: {new Date(work.uploadedAt).toLocaleDateString()}
+                    </p>
                   </div>
-                );
-              })
-            )}
-          </div>
+                </div>
+              );
+            })
+          )}
+        </div>
           
           <div className="text-center mt-12">
-            <button className="px-10 py-4 bg-black/20 backdrop-blur-md border border-white/10 text-white font-body text-lg font-semibold rounded-full hover:bg-black/30 transition-all duration-300">
+            <button suppressHydrationWarning={true} className="px-10 py-4 bg-black/20 backdrop-blur-md border border-white/10 text-white font-body text-lg font-semibold rounded-full hover:bg-black/30 transition-all duration-300">
               View Full Gallery
             </button>
           </div>
@@ -569,7 +597,7 @@ export default function Home() {
             </p>
           </div>
           
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} suppressHydrationWarning={true} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-body text-gray-400 mb-2">First Name</label>
@@ -622,13 +650,13 @@ export default function Home() {
                 Capturing life&apos;s precious moments with artistic vision and professional excellence.
               </p>
               <div className="flex space-x-4">
-                <a href="#" className="w-12 h-12 bg-white/5 hover:bg-gold-accent rounded-full flex items-center justify-center transition-colors">
+                <a href="https://www.instagram.com/p/DGh4pvQRBFU/?igsh=cmR3OHJhaTJ2Njh3" className="w-12 h-12 bg-white/5 hover:bg-gold-accent rounded-full flex items-center justify-center transition-colors">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
                 </a>
-                <a href="#" className="w-12 h-12 bg-white/5 hover:bg-gold-accent rounded-full flex items-center justify-center transition-colors">
+                <a href="https://www.linkedin.com/in/athul-jacob-8a4529267" className="w-12 h-12 bg-white/5 hover:bg-gold-accent rounded-full flex items-center justify-center transition-colors">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                 </a>
-                <a href="mailto:hello@lensofaj.com" className="w-12 h-12 bg-white/5 hover:bg-gold-accent rounded-full flex items-center justify-center transition-colors">
+                <a href="mailto:athuljacob007@gmail.com" className="w-12 h-12 bg-white/5 hover:bg-gold-accent rounded-full flex items-center justify-center transition-colors">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                   </svg>
@@ -639,10 +667,10 @@ export default function Home() {
             <div>
               <h3 className="text-xl font-display font-bold mb-4">Quick Links</h3>
               <ul className="space-y-2 font-body text-gray-400">
-                <li><Link href="#" className="hover:text-gold-accent transition-colors">About Us</Link></li>
-                <li><Link href="#" className="hover:text-gold-accent transition-colors">Portfolio</Link></li>
-                <li><Link href="#" className="hover:text-gold-accent transition-colors">Services</Link></li>
-                <li><Link href="#" className="hover:text-gold-accent transition-colors">Contact</Link></li>
+                <li><Link href="#about" className="hover:text-gold-accent transition-colors">About Us</Link></li>
+                <li><Link href="#portfolio" className="hover:text-gold-accent transition-colors">Portfolio</Link></li>
+                <li><Link href="#services" className="hover:text-gold-accent transition-colors">Services</Link></li>
+                <li><Link href="#contact" className="hover:text-gold-accent transition-colors">Contact</Link></li>
               </ul>
             </div>
             
@@ -651,8 +679,8 @@ export default function Home() {
               <ul className="space-y-2 font-body text-gray-400">
                 <li>K. Narayanapura, Kothanur, Bengaluru, Karnataka 560077, India</li>
                 <li className="pt-2">
-                  <a href="mailto:hello@lensofaj.com" className="hover:text-gold-accent transition-colors">
-                    hello@lensofaj.com
+                  <a href="mailto:athuljacob007@gmail.com" className="hover:text-gold-accent transition-colors">
+                    athuljacob007@gmail.com
                   </a>
                 </li>
                 <li>
